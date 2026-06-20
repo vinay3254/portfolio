@@ -1,0 +1,116 @@
+/* Vinay GK Replica CSS Overrides */
+
+/* Define CSS variables globally to guarantee color mapping */
+:root {
+  --color--dark-green: #282c20;
+  --color--grey-1: #282c20; /* Made darker to match high-contrast original logo */
+  --color--grey-2: #848c71;
+  --color--lime: #d2ff00;
+  --color--white: #ffffff;
+  --color--black: #101400;
+}
+
+/* Restore original off-white fallback background */
+body {
+  background-color: #f4f4ed !important;
+  color: #282c20 !important;
+  -ms-overflow-style: none !important; /* IE & Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* Restore default scrollbar hide behavior */
+body ::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Ensure canvas elements from external Rive library fit nicely */
+canvas[data-rive-object],
+canvas[data-rive-nav-hamburger],
+canvas[data-rive-nav-object] {
+  display: block;
+  max-width: 100%;
+}
+
+/* Custom CSS Hamburger Button Fallback (Renders two sleek horizontal bars) */
+.nav-ham.has-fallback {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 53px;
+  height: 53px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+}
+
+.nav-ham.has-fallback::before,
+.nav-ham.has-fallback::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background-color: currentColor;
+  transition: transform 0.3s cubic-bezier(0.65, 0.05, 0, 1);
+}
+
+/* Animate hamburger to close 'X' when open */
+.nav-ham.has-fallback.menu-open::before {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.nav-ham.has-fallback.menu-open::after {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* Show static placeholder images when Rive canvas fails */
+[data-rive-placeholder] {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Ensure navigation brand logo text looks correct in fallback */
+.nav-brand-link:hover path {
+  fill: var(--color--lime) !important;
+}
+
+/* Interactivity and Hamburger Menu State */
+.nav-menu-w {
+  transition: clip-path 0.5s cubic-bezier(0.65, 0.05, 0, 1), opacity 0.5s ease;
+}
+
+.nav-menu-w.is-open {
+  display: flex !important;
+  clip-path: ellipse(120% 120% at 50% 0%) !important;
+  opacity: 1 !important;
+}
+
+/* Handle CSS marquee animation fallback if JS marquee stops */
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-advanced__scroll.active-scroll {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 25s linear infinite;
+}
+
+/* Center position fallback logo */
+.page-ln4-svg svg {
+  color: var(--color--dark-green) !important; /* Force dark green logo color */
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+.page-ln4-svg:hover svg {
+  transform: scale(1.1);
+}
