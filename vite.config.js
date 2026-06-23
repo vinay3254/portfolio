@@ -9,6 +9,9 @@ export default defineConfig({
         ontrack: resolve(__dirname, 'on-track/index.html'),
         offtrack: resolve(__dirname, 'off-track/index.html'),
         calendar: resolve(__dirname, 'calendar/index.html'),
+        partnerships: resolve(__dirname, 'partnerships/index.html'),
+        privacypolicy: resolve(__dirname, 'legal/privacy-policy/index.html'),
+        termsconditions: resolve(__dirname, 'legal/terms-conditions/index.html'),
       }
     }
   }
